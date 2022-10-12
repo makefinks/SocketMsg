@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.jgoodies:forms:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jgoodies/forms/unknown/forms-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jgoodies/forms/unknown/forms-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jgoodies/forms/unknown/forms-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
