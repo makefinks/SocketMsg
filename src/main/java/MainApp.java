@@ -1,8 +1,9 @@
 import javax.swing.*;
+import java.io.IOException;
 
 public class MainApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         JFrame conFrame = new JFrame();
         conFrame.setVisible(true);
@@ -11,6 +12,12 @@ public class MainApp {
         ConnectPanel conPanel = new ConnectPanel();
         conFrame.add(conPanel.$$$getRootComponent$$$());
         conFrame.pack();
+
+        ChatServer server = new ChatServer(5555);
+        server.start();
+
+
+
 
     }
 }
