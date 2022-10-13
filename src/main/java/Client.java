@@ -6,18 +6,19 @@ public class Client {
 
     private static final Logger log = Logger.getLogger("ClientLogger");
     private Socket socket;
-    private BufferedWriter out;
+    private PrintWriter out;
     private BufferedReader in;
     public void connect(String ip, int port) throws IOException {
        socket = new Socket(ip, port);
-       out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+       out = new PrintWriter(socket.getOutputStream(), true);
        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
    }
 
-   public String sendMessage(String message) throws IOException {
-        out.write(message);
-        log.info("Client with socket " + socket.toString() + " send message: " + "'" + message + "'");
-        return in.readLine();
+   public void sendMessage(String message) throws IOException {
+        out.println(message);
+        //out.flush();
+       // log.info("Client with socket " + socket.toString() + " send message: " + "'" + message + "'");
+
    }
 
    public void terminate() throws IOException {
@@ -26,4 +27,20 @@ public class Client {
         out.close();
    }
 
+   public boolean isConnected(){
+       return socket.isConnected();
+   }
+
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public PrintWriter getOut() {
+        return out;
+    }
+
+    public BufferedReader getIn() {
+        return in;
+    }
 }

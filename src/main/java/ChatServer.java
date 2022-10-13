@@ -11,8 +11,8 @@ public class ChatServer extends Thread{
     private static final Logger log = Logger.getLogger("ChatLogger");
     private ArrayList<ClientHandler> clientHandlers;
     private ServerSocket serverSocket;
-    private BufferedReader out;
-    private PrintWriter in;
+    private BufferedReader in;
+    private PrintWriter out;
 
     private boolean running = true;
     private int port;
@@ -20,7 +20,6 @@ public class ChatServer extends Thread{
     public ChatServer(int port){
         this.port = port;
         clientHandlers = new ArrayList<>();
-
     }
 
     public void run(){
@@ -33,7 +32,7 @@ public class ChatServer extends Thread{
         }
         while(running){
             try {
-                ClientHandler handler = new ClientHandler(serverSocket.accept(), serverSocket);
+                ClientHandler handler = new ClientHandler(serverSocket.accept(), this);
                 clientHandlers.add(handler);
                 handler.start();
             } catch (IOException e) {
@@ -46,6 +45,14 @@ public class ChatServer extends Thread{
         serverSocket.close();
         out.close();
         in.close();
+    }
+
+    public void answer(String message){
+        out.println(message);
+    }
+
+    public ArrayList<ClientHandler> getClientHandlers(){
+        return clientHandlers;
     }
 
 

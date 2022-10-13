@@ -9,12 +9,12 @@ public class MainApp {
         conFrame.setVisible(true);
         conFrame.setSize(300, 200);
 
-        ConnectPanel conPanel = new ConnectPanel();
+        ConnectPanel conPanel = new ConnectPanel(conFrame);
         conFrame.add(conPanel.$$$getRootComponent$$$());
         conFrame.pack();
 
-        ChatServer server = new ChatServer(5555);
-        server.start();
+        //ChatServer server = new ChatServer(5555);
+       //server.start();
 
 
 

@@ -8,13 +8,15 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="63ac" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="63ac" class="javax.swing.JTextField" binding="portField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="e7b58" class="javax.swing.JButton" binding="connectButton" default-binding="true">
         <constraints>
@@ -40,13 +42,13 @@
           <text value="Port"/>
         </properties>
       </component>
-      <component id="8ac33" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
+      <component id="8ac33" class="javax.swing.JProgressBar" binding="progressBar">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="84841" class="javax.swing.JLabel">
+      <component id="84841" class="javax.swing.JLabel" binding="statusLbl">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -54,13 +56,15 @@
           <text value="Status"/>
         </properties>
       </component>
-      <component id="5de6c" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="5de6c" class="javax.swing.JTextField" binding="ipField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <hspacer id="55142">
         <constraints>
@@ -72,12 +76,12 @@
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="e2d1e" class="javax.swing.JCheckBox" binding="checkBox1" default-binding="true">
+      <component id="e2d1e" class="javax.swing.JCheckBox" binding="hostCheckBox" default-binding="true">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="CheckBox"/>
+          <text value="Host"/>
         </properties>
       </component>
     </children>
