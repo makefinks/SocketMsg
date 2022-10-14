@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,12 +19,12 @@ public class ChatHandler {
         if(host){
             InetAddress ipAdress = InetAddress.getLocalHost();
             chatPanel.getChatArea().append("New Server established \n IP: " + ipAdress.toString() + "\n Port: " + chatPanel.getConnectPanel().getPortField().getText() + "\n");
-            client.connect("localhost", port);
+            client.connect("localhost", port, chatPanel.getConnectPanel().getNameField().getText());
         }else{
             chatPanel.getChatArea().append("Establishing Connection to " + ip + ":" + port + "\n");
             try{
-                client.connect(ip, port);
-                chatPanel.getChatArea().append("Sucess!");
+                client.connect(ip, port, chatPanel.getConnectPanel().getNameField().getText());
+                chatPanel.getChatArea().append("Sucess! \n");
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -45,16 +46,24 @@ public class ChatHandler {
                 String line;
                 while(true){
                     try {
-                        if (!((line = client.getIn().readLine()) != null)) break;
+                       // if (!((line = client.getIn().readLine()) != null)) break;
+                        if((line = client.getIn().readLine()) != null){
+                            chatPanel.getChatArea().append(line + "\n");
+                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    chatPanel.getChatArea().append(line + "\n");
+                    //chatPanel.getChatArea().append(line + "\n");
                 }
             }
         };
         listenThread.start();
-
-
     }
+
+    public void drawInfoLine(String line){
+        chatPanel.getChatArea().setForeground(Color.red);
+        chatPanel.getChatArea().append(line + "\n");
+        chatPanel.getChatArea().setForeground(Color.BLACK);
+    }
+
 }

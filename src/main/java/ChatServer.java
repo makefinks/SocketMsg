@@ -35,6 +35,8 @@ public class ChatServer extends Thread{
                 ClientHandler handler = new ClientHandler(serverSocket.accept(), this);
                 clientHandlers.add(handler);
                 handler.start();
+                //handler.sendConnectBroadcast();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -54,7 +56,4 @@ public class ChatServer extends Thread{
     public ArrayList<ClientHandler> getClientHandlers(){
         return clientHandlers;
     }
-
-
-
 }

@@ -17,6 +17,8 @@ public class ConnectPanel {
     private JPanel compPanel;
     private JTextField ipField;
     private JCheckBox hostCheckBox;
+    private JTextField nameField;
+    private JLabel nameLbl;
     private JLabel statusLbl;
     private ChatServer server;
 
@@ -108,24 +110,19 @@ public class ConnectPanel {
      */
     private void $$$setupUI$$$() {
         compPanel = new JPanel();
-        compPanel.setLayout(new GridLayoutManager(5, 5, new Insets(0, 0, 0, 0), -1, -1));
+        compPanel.setLayout(new GridLayoutManager(4, 5, new Insets(0, 0, 0, 0), -1, -1));
         portField = new JTextField();
         portField.setText("");
         compPanel.add(portField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         connectButton = new JButton();
         connectButton.setText("connect");
-        compPanel.add(connectButton, new GridConstraints(4, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        compPanel.add(connectButton, new GridConstraints(3, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("IP");
         compPanel.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Port");
         compPanel.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        progressBar = new JProgressBar();
-        compPanel.add(progressBar, new GridConstraints(2, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        statusLbl = new JLabel();
-        statusLbl.setText("Status");
-        compPanel.add(statusLbl, new GridConstraints(3, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ipField = new JTextField();
         ipField.setText("");
         compPanel.add(ipField, new GridConstraints(0, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -136,6 +133,12 @@ public class ConnectPanel {
         hostCheckBox = new JCheckBox();
         hostCheckBox.setText("Host");
         compPanel.add(hostCheckBox, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameField = new JTextField();
+        nameField.setText("");
+        compPanel.add(nameField, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        nameLbl = new JLabel();
+        nameLbl.setText("Name");
+        compPanel.add(nameLbl, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -175,5 +178,21 @@ public class ConnectPanel {
 
     public ConnectPanel getConnectPanel() {
         return connectPanel;
+    }
+
+    public JFrame getParent() {
+        return parent;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JLabel getNameLbl() {
+        return nameLbl;
+    }
+
+    public ChatServer getServer() {
+        return server;
     }
 }

@@ -25,8 +25,8 @@ public class ChatPanel {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String msgText = messageField.getText();
+                messageField.setText("");
                 try {
                     handler.sendMessage(msgText);
                 } catch (IOException ex) {
