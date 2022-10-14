@@ -15,9 +15,5 @@ public class MainApp {
 
         //ChatServer server = new ChatServer(5555);
        //server.start();
-
-
-
-
     }
 }

@@ -2,11 +2,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 
 public class ConnectPanel {
@@ -29,6 +32,9 @@ public class ConnectPanel {
         this.parent = parent;
         connectPanel = this;
 
+        ipField.setText("85.214.108.147");
+        portField.setText("5555");
+
         connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,12 +51,20 @@ public class ConnectPanel {
                         chatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         parent.dispose();
 
+
+
                         ChatPanel chatPanel = null;
                         try {
                             chatPanel = new ChatPanel(connectPanel);
                         } catch (UnknownHostException ex) {
                             throw new RuntimeException(ex);
                         } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (UnsupportedAudioFileException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (LineUnavailableException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (URISyntaxException ex) {
                             throw new RuntimeException(ex);
                         }
                         chatFrame.add(chatPanel.$$$getRootComponent$$$());
@@ -71,6 +85,12 @@ public class ConnectPanel {
                         } catch (UnknownHostException ex) {
                             throw new RuntimeException(ex);
                         } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (UnsupportedAudioFileException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (LineUnavailableException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (URISyntaxException ex) {
                             throw new RuntimeException(ex);
                         }
                         chatFrame.add(chatPanel.$$$getRootComponent$$$());

@@ -1,11 +1,14 @@
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 
 public class ChatPanel {
@@ -16,10 +19,16 @@ public class ChatPanel {
     private ConnectPanel connectPanel;
     private ChatHandler handler;
 
-    public ChatPanel(ConnectPanel connectPanel) throws IOException {
+    public ChatPanel(ConnectPanel connectPanel) throws IOException, UnsupportedAudioFileException, LineUnavailableException, URISyntaxException {
 
         handler = new ChatHandler(connectPanel.getHostCheckBox().isSelected(), this);
         this.connectPanel = connectPanel;
+
+        panel.setBackground(new Color(21, 31, 43));
+        chatArea.setBackground(new Color(21, 31, 43));
+
+        chatArea.setForeground(Color.white);
+
 
         handler.initialize();
         sendButton.addActionListener(new ActionListener() {
@@ -61,7 +70,7 @@ public class ChatPanel {
         chatArea.setText("");
         scrollPane1.setViewportView(chatArea);
         messageField = new JTextField();
-        panel.add(messageField, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel.add(messageField, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 1, false));
         sendButton = new JButton();
         sendButton.setText("send");
         panel.add(sendButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

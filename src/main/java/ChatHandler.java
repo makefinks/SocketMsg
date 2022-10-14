@@ -1,15 +1,34 @@
+import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class ChatHandler {
     private boolean host;
     private ChatPanel chatPanel;
     private Client client;
-    public ChatHandler(boolean host, ChatPanel chatPanel){
+    private Clip notClip;
+
+    private File notSound;
+    public ChatHandler(boolean host, ChatPanel chatPanel) throws LineUnavailableException, IOException, UnsupportedAudioFileException, URISyntaxException {
         this.host = host;
         this.chatPanel = chatPanel;
+
+
+        //Audio
+        URL resource = getClass().getClassLoader().getResource("notification.wav");
+        assert resource != null;
+        notSound = new File(resource.toURI());
+        //src/main/java/notification.wav"
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(notSound);
+        notClip = AudioSystem.getClip();
+        notClip.open(audioStream);
+
     }
 
     public void initialize() throws IOException {
@@ -31,7 +50,7 @@ public class ChatHandler {
 
         }
 
-        chatPanel.getChatArea().append("-".repeat(10) + "\n");
+        chatPanel.getChatArea().append("-".repeat(50) + "\n");
         listen();
 
     }
@@ -49,6 +68,12 @@ public class ChatHandler {
                        // if (!((line = client.getIn().readLine()) != null)) break;
                         if((line = client.getIn().readLine()) != null){
                             chatPanel.getChatArea().append(line + "\n");
+
+                            //Play sound if message comes from other user
+                            if(!line.split(":")[0].equals(chatPanel.getConnectPanel().getNameField().getText())){
+                                playNotification();
+                            }
+
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -65,5 +90,11 @@ public class ChatHandler {
         chatPanel.getChatArea().append(line + "\n");
         chatPanel.getChatArea().setForeground(Color.BLACK);
     }
+
+    public void playNotification(){
+        System.out.println("playing sound");
+        notClip.start();
+    }
+
 
 }
