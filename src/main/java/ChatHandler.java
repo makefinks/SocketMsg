@@ -25,9 +25,7 @@ public class ChatHandler {
         assert resource != null;
         notSound = new File(resource.toURI());
         //src/main/java/notification.wav"
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(notSound);
-        notClip = AudioSystem.getClip();
-        notClip.open(audioStream);
+
 
     }
 
@@ -77,6 +75,10 @@ public class ChatHandler {
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
+                    } catch (UnsupportedAudioFileException e) {
+                        throw new RuntimeException(e);
+                    } catch (LineUnavailableException e) {
+                        throw new RuntimeException(e);
                     }
                     //chatPanel.getChatArea().append(line + "\n");
                 }
@@ -91,8 +93,11 @@ public class ChatHandler {
         chatPanel.getChatArea().setForeground(Color.BLACK);
     }
 
-    public void playNotification(){
+    public void playNotification() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         System.out.println("playing sound");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(notSound);
+        notClip = AudioSystem.getClip();
+        notClip.open(audioStream);
         notClip.start();
     }
 
